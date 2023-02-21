@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="DELETE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>false</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>x_58872_needit_needit</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition/>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>NeedIt When needed field date</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/ ) {
+
+    // Retrieve the value of the Advanced notice days property from the NeedIt Properties table
+    var daysLeadTime = GlideApplicationProperty.getValue('x_58872_needit.advancedNoticeDays');
+
+    // Adjust When needed value with daysLeadTime for calculation
+    var whenNeeded = new GlideDateTime(current.u_when_needed.getDisplayValue());
+    whenNeeded.addDaysUTC(-daysLeadTime);
+    var comparisonDate = whenNeeded.getDate();
+
+    // Instantiate the NeedItUtils class. Call the isDatePast method and pass
+    // the u_when_needed value.
+
+    var niutils = new NeedItUtils();
+    var isPast = niutils.isDatePast(comparisonDate);
+
+    // If the isDatePast method returns true, the date is in the past.
+    if (isPast == true) {
+        gs.addErrorMessage("When needed date needs to be more than " + daysLeadTime + " from today.  Your request has not been saved to the database.");
+        current.setAbortAction(true);
+    }
+
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-03-03 00:44:14</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>9373668d4fd93200cb281b818110c7f9</sys_id>
+        <sys_mod_count>29</sys_mod_count>
+        <sys_name>NeedIt When needed field date</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="NeedIt" source="x_58872_needit">6ead8e780f603200cd674f8ce1050ed1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="NeedIt">6ead8e780f603200cd674f8ce1050ed1</sys_scope>
+        <sys_update_name>sys_script_9373668d4fd93200cb281b818110c7f9</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-02-20 15:38:38</sys_updated_on>
+        <template/>
+        <when>before</when>
+    </sys_script>
+    <sys_translated_text action="DELETE" query="documentkey=9373668d4fd93200cb281b818110c7f9"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="NeedIt">6ead8e780f603200cd674f8ce1050ed1</application>
+        <file_path/>
+        <instance_id>66cce6f7db88bb402f68c59705961974</instance_id>
+        <instance_name>dev74951</instance_name>
+        <name>sys_script_9373668d4fd93200cb281b818110c7f9</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update sys_domain="global" table="sys_script"&gt;&lt;sys_script action="INSERT_OR_UPDATE"&gt;&lt;abort_action&gt;false&lt;/abort_action&gt;&lt;access&gt;package_private&lt;/access&gt;&lt;action_delete&gt;false&lt;/action_delete&gt;&lt;action_insert&gt;true&lt;/action_insert&gt;&lt;action_query&gt;false&lt;/action_query&gt;&lt;action_update&gt;false&lt;/action_update&gt;&lt;active&gt;true&lt;/active&gt;&lt;add_message&gt;false&lt;/add_message&gt;&lt;advanced&gt;true&lt;/advanced&gt;&lt;change_fields&gt;false&lt;/change_fields&gt;&lt;client_callable&gt;false&lt;/client_callable&gt;&lt;collection&gt;x_58872_needit_needit&lt;/collection&gt;&lt;condition/&gt;&lt;description/&gt;&lt;execute_function&gt;false&lt;/execute_function&gt;&lt;filter_condition/&gt;&lt;is_rest&gt;false&lt;/is_rest&gt;&lt;message/&gt;&lt;name&gt;NeedIt When needed field date&lt;/name&gt;&lt;order&gt;100&lt;/order&gt;&lt;priority&gt;100&lt;/priority&gt;&lt;rest_method/&gt;&lt;rest_method_text/&gt;&lt;rest_service/&gt;&lt;rest_service_text/&gt;&lt;rest_variables/&gt;&lt;role_conditions/&gt;&lt;script&gt;&lt;![CDATA[(function executeRule(current, previous /*null when async*/ ) {
+
+    // Retrieve the value of the Advanced notice days property from the NeedIt Properties table
+    var daysLeadTime = GlideApplicationProperty.getValue('x_58872_needit.advancedNoticeDays');
+
+    // Adjust When needed value with daysLeadTime for calculation
+    var whenNeeded = new GlideDateTime(current.u_when_needed.getDisplayValue());
+    whenNeeded.addDaysUTC(-daysLeadTime);
+    var comparisonDate = whenNeeded.getDate();
+
+    // Instantiate the NeedItUtils class. Call the isDatePast method and pass
+    // the u_when_needed value.
+
+    var niutils = new NeedItUtils();
+    var isPast = niutils.isDatePast(comparisonDate);
+
+    // If the isDatePast method returns true, the date is in the past.
+    if (isPast == true) {
+        gs.addErrorMessage("When needed date needs to be more than " + daysLeadTime + " from today.  Your request has not been saved to the database.");
+        current.setAbortAction(true);
+    }
+
+})(current, previous);]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2017-03-03 00:44:14&lt;/sys_created_on&gt;&lt;sys_domain&gt;global&lt;/sys_domain&gt;&lt;sys_domain_path&gt;/&lt;/sys_domain_path&gt;&lt;sys_id&gt;9373668d4fd93200cb281b818110c7f9&lt;/sys_id&gt;&lt;sys_mod_count&gt;29&lt;/sys_mod_count&gt;&lt;sys_name&gt;NeedIt When needed field date&lt;/sys_name&gt;&lt;sys_overrides/&gt;&lt;sys_package display_value="NeedIt" source="x_58872_needit"&gt;6ead8e780f603200cd674f8ce1050ed1&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="NeedIt"&gt;6ead8e780f603200cd674f8ce1050ed1&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_9373668d4fd93200cb281b818110c7f9&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2023-02-20 15:38:38&lt;/sys_updated_on&gt;&lt;template/&gt;&lt;when&gt;before&lt;/when&gt;&lt;/sys_script&gt;&lt;sys_translated_text action="delete_multiple" query="documentkey=9373668d4fd93200cb281b818110c7f9"/&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>-1972021812</payload_hash>
+        <record_name>NeedIt When needed field date</record_name>
+        <reverted_from/>
+        <source>85dbdcc9874961102009ca280cbb3558</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-02-20 15:38:39</sys_created_on>
+        <sys_id>5f96e443870921102009ca280cbb353f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1866f7a1de80000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-02-20 15:38:39</sys_updated_on>
+        <type>Business Rule</type>
+        <update_guid>5796e443e90921100a583d405cdcca3f</update_guid>
+        <update_guid_history>5796e443e90921100a583d405cdcca3f:-1972021812,0dbb763ea40121101fba04d3ec9a8437:0,959335dd094da11016a4103369add4af:0,87f6a3ac6ac12110ae4a6f4d1f4d0cec:0,0d16832c304121106476b9e597f739f1:0,0d1498374e3ce110357c85e42796fed1:801016018,3b035837b93ce1109165a40a1344e64d:-246601631,f0560c77edf8e110e61e9cb84d1f5c23:0,43b6a7a79478e110703e1e598aaf1aae:0,f24e4e1b1674a110127c35997e075737:0,932c0d076af0611009f22d9d27fb68f8:0,fd111936e474211015b9a1dfd3a57738:0,3283e87a36b02110a8388f93796d0d40:0,d3ec73e215302110cdf97dd323b22ec4:490798344</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-02-21 08:36:18</sys_created_on>
+        <sys_db_object display_value="" name="sys_script">sys_script</sys_db_object>
+        <sys_id>871688bd02a04eeb986dfcef5b0240d9</sys_id>
+        <sys_metadata>9373668d4fd93200cb281b818110c7f9</sys_metadata>
+        <sys_name>NeedIt When needed field date</sys_name>
+        <sys_package display_value="NeedIt" source="x_58872_needit">6ead8e780f603200cd674f8ce1050ed1</sys_package>
+        <sys_parent display_value="NeedIt">1c2a21ec8730a5102009ca280cbb356f</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="NeedIt">6ead8e780f603200cd674f8ce1050ed1</sys_scope>
+        <sys_scope_delete display_value="">94872a8897db403e8ee69a431de2fca4</sys_scope_delete>
+        <sys_update_name>sys_script_9373668d4fd93200cb281b818110c7f9</sys_update_name>
+        <sys_update_version display_value="sys_script_9373668d4fd93200cb281b818110c7f9">5f96e443870921102009ca280cbb353f</sys_update_version>
+    </sys_metadata_delete>
+</record_update>
